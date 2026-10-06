@@ -1,0 +1,47 @@
+1. Floorplanning (계층 설계)
+칩 내부의 전체적인 구조적 틀과 공간을 배치하는 단계이다.
+
+주요 작업:
+1. 칩의 크기(Area)와 모양, 가로세로 비율(Aspect Ratio) 결정
+2. 외부 신호가 들어오고 나가는 I/O 패드(Pad) 배치
+3. 큰 메모리 블록(SRAM, ROM 등)이나 IP 블록(Macro)의 위치 결정
+4. 주요 전원선(Power Grid: VDD, VSS) 및 전력 분배 망(PDN) 설계
+
+
+2. Placement (배치)
+계층 설계 과정에서 만들어진 빈 공간에 수십만~수억 개의 표준 셀(Standard Cell: AND, OR, Flip-Flop 등)을 실제로 배치하는 단계이다.
+
+주요 작업:
+1. 로직 합성(Gate level design)으로 생성된 회로 요소들을 최적의 위치에 고정   
+2. 셀 간 신호 전달 지연(Delay) 및 칩 면적 최소화
+3. 신호선이 꼬이거나 혼잡해지는 현상(Congestion) 방지
+
+
+3. Clock Tree Synthesis (CTS, 클록 트리 합성)
+칩 전체의 플립플롭(Flip-Flop) 등 동기화 소자에 클록(Clock) 신호를 균일하게 전달하는 네트워크를 구축하는 단계이다.
+
+주요 작업:
+1. 클록 버퍼(Clock Buffer) 및 인버터(Inverter)를 배치하여 클록 트리를 생성
+2. 신호 도달 시간의 차이인 Clock Skew(클록 스큐)를 최소화
+3. 클록 신호의 지연 시간(Latency) 및 전력 소모 최적화
+
+
+4. Routing (라우팅 / 배선)
+배치된 셀들과 클록 트리 간에 금속 선(Metal Line)을 사용하여 실제 전기적 연결을 수행하는 단계이다.
+
+주요 목적: 신호 간 간섭(Crosstalk)을 줄이고 타이밍 제약 조건(Timing Constraints) 만족
+
+주요 작업: 
+1. Global Routing: 전체적인 신호 이동 경로를 대략적으로 계획
+2. Detail Routing: 대략적으로 계획된 신호 이동 경로를 금속 레이어(Metal Layer)를 활용해 핀과 핀 사이의 물리적 전선을 연결
+
+
+5. Signoff (최종 검증 및 최종 승인)
+제조(Tape-out) 단계로 넘어가기 전, 설계에 오류나 규칙 위반이 없는지 최종 검증하는 단계이다.
+
+Physical Verification (물리적 검증):   
+DRC (Design Rule Check): 파운드리 공정 규격에 맞게 기하학적 패턴이 작성되었는지 확인
+LVS (Layout Versus Schematic): 최종 배치 및 라우팅된 레이아웃이 원래 회로도(Schematic)와 동일한지 비교
+
+Static Timing Analysis (STA, 정적 타이밍 분석):  칩이 목표 동작 주파수(Clock Speed)에서 동작할 수 있는지 Setup/Hold Time 등을 엄격하게 검증
+
